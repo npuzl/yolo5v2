@@ -34,6 +34,8 @@ class SwishImplementation(torch.autograd.Function):
 class MemoryEfficientSwish(nn.Module):
     def forward(self, x):
         return SwishImplementation.apply(x)
+    
+    
 def autopad(k, p=None):  # kernel, padding
     # Pad to 'same'
     if p is None:
@@ -263,8 +265,6 @@ class Expand(nn.Module):
         return x.view(N, C // s**2, H * s, W * s)  # x(1,16,160,160)
 
 
-
-
 class Concat(nn.Module):
     # Concatenate a list of tensors along dimension
     def __init__(self, c1, c2):
@@ -296,6 +296,7 @@ class Concat(nn.Module):
                 self.swish(weight[0] * x[0] + weight[1] * x[1] +
                            weight[2] * x[2]))
         return x
+
 
 class NMS(nn.Module):
     # Non-Maximum Suppression (NMS) module
