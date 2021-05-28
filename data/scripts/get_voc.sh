@@ -11,18 +11,18 @@ start=$(date +%s)
 mkdir -p ../tmp
 cd ../tmp/
 
-# # Download/unzip images and labels
-# d='.' # unzip directory
-# #url=https://github.com/ultralytics/yolov5/releases/download/v1.0/
-# url=http://host.robots.ox.ac.uk/pascal/VOC/voc2007/
-# f1=VOCtrainval_06-Nov-2007.tar # 446MB, 5012 images
-# f2=VOCtest_06-Nov-2007.tar    # 438MB, 4953 images
-# #f3=VOCdevkit_08-Jun-2007.zip
-# for f in  $f2 $f1; do
-#   echo 'Downloading' $url$f '...' 
-#   curl -L $url$f -o $f && tar xvf $f && rm $f & # download, unzip, remove in background
-# done
-# wait # finish background tasks
+# Download/unzip images and labels
+d='.' # unzip directory
+#url=https://github.com/ultralytics/yolov5/releases/download/v1.0/
+url=http://host.robots.ox.ac.uk/pascal/VOC/voc2007/
+f1=VOCtrainval_06-Nov-2007.tar # 446MB, 5012 images
+f2=VOCtest_06-Nov-2007.tar    # 438MB, 4953 images
+#f3=VOCdevkit_08-Jun-2007.zip
+for f in  $f2 $f1; do
+  echo 'Downloading' $url$f '...' 
+  curl -L $url$f -o $f && tar xvf $f && rm $f & # download, unzip, remove in background
+done
+wait # finish background tasks
 
 end=$(date +%s)
 runtime=$((end - start))
